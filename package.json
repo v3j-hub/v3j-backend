@@ -6,6 +6,10 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.0",
