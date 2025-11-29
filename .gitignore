@@ -1,0 +1,35 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Ignore build/dist folders
+dist/
+build/
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS generated files
+*.swp
+ehthumbs.db
+Desktop.ini
+
+# Secrets
+.env
+*.env
+keys/
+
+
+# Temporarily Ignored
+
+
