@@ -8,8 +8,8 @@ export const sendContactEmail = async (req, res) => {
         const contact = new ContactMessage(name, email, phone, subject, message);
 
         const mailOptions = {
-            from: email,
-            to: process.env.RECEIVE_EMAIL, // your email
+            from: `Website Contact Form <postmaster@${process.env.MAILGUN_DOMAIN}>`,
+            to: process.env.RECEIVE_EMAIL,
             subject: `New Contact Form Message: ${subject}`,
             html: `
                 <h3>New Contact Message</h3>
