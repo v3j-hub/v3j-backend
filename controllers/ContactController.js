@@ -21,7 +21,7 @@ export const sendContactEmail = async (req, res) => {
             `
         };
 
-        await transporter.sendMail(mailOptions);
+        await emailTransporter.sendMail(mailOptions);
 
         return res.json({ success: true, message: "Email sent successfully!" });
 
