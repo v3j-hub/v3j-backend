@@ -1,4 +1,4 @@
-import { transporter } from "../config/emailConfig.js";
+import { emailTransporter } from "../config/emailConfig.js";
 import ContactMessage from "../models/ContactMessage.js";
 
 export const sendContactEmail = async (req, res) => {
