@@ -1,4 +1,4 @@
-import { mgClient } from "../config/emailConfig.js";
+import { transporter } from "../config/emailConfig.js";
 import ContactMessage from "../models/ContactMessage.js";
 
 export const sendContactEmail = async (req, res) => {
@@ -7,10 +7,10 @@ export const sendContactEmail = async (req, res) => {
 
         const contact = new ContactMessage(name, email, phone, subject, message);
 
-        const result = await mgClient.messages.create(process.env.MAILGUN_DOMAIN, {
-            from: `${contact.name} <postmaster@${process.env.MAILGUN_DOMAIN}>`,
+        const mailOptions = {
+            from: `Website Contact Form <postmaster@${process.env.MAILGUN_DOMAIN}>`,
             to: process.env.RECEIVE_EMAIL,
-            subject: `New Contact Form: ${contact.subject}`,
+            subject: `New Contact Form Message: ${subject}`,
             html: `
                 <h3>New Contact Message</h3>
                 <p><strong>Name:</strong> ${contact.name}</p>
@@ -19,12 +19,14 @@ export const sendContactEmail = async (req, res) => {
                 <p><strong>Subject:</strong> ${contact.subject}</p>
                 <p><strong>Message:</strong><br>${contact.message}</p>
             `
-        });
+        };
+
+        await transporter.sendMail(mailOptions);
 
         return res.json({ success: true, message: "Email sent successfully!" });
 
     } catch (error) {
-        console.log("Mailgun error:", error);
+        console.log(error);
         return res.status(500).json({ error: "Failed to send email" });
     }
 };
